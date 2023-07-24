@@ -1,7 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const menuroute = require("./router/menuroute");
-const userroute = require("./router/userroute");
 const cors = require("cors");
 
 const app = express();
@@ -16,25 +14,25 @@ const menuController = require("./controller/menucontroller");
 const isAuthenticated = require("./middleware/authmiddleware");
 
 // Create a new menu
-router.post("/", menuController.createMenu);
+app.post("/menu", menuController.createMenu);
 
 // Get a menu by ID
-router.get("/:id", menuController.getMenuById);
+app.get("/menu/:id", menuController.getMenuById);
 
 // Get all menus
-router.get("/", isAuthenticated, menuController.getAllMenus);
+app.get("/menu", isAuthenticated, menuController.getAllMenus);
 
 // Update a menu by ID
-router.put("/:id", menuController.updateMenu);
+app.put("/menu/:id", menuController.updateMenu);
 
 // Delete a menu by ID
-router.delete("/:id", menuController.deleteMenu);
+app.delete("/menu/:id", menuController.deleteMenu);
 
 // Register a new user
-router.post("/register", userController.registerUser);
+app.post("/register", userController.registerUser);
 
 // Login
-router.post("/login", userController.login);
+app.post("/login", userController.login);
 
 
 mongoose
